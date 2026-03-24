@@ -21,6 +21,9 @@
 	td {
 		width : 200px;
 	}
+	div{
+		margin-top: 10px;
+	}
 </style>
 </head>
 <body>
@@ -37,19 +40,19 @@
 			</tr>
 			<tr>
 				<th>학 번</th>
-					<td><input type="text" name="stuNo"></td>
+					<td><label><input type="text" name="stuNo"></td></label>
 			</tr>
 			<tr>
 				<th>이 름</th>
-					<td><input type="text" name="name"></td>
+					<td><label><input type="text" name="name"></td></label>
 			</tr>
 			<tr>
 				<th>학 과</th>
-					<td><input type="text" name="dept"></td>
+					<td><label><input type="text" name="dept"></td></label>
 			</tr>
 		</table>
 		<div>
-			<input type="button" value="작성하기" onclick="fnAdd()">
+			<input type="button" value="추가하기" onclick="fnAdd()">
 			<input type="reset" value="초기화">
 			<a href="stu-list.jsp"><input type="button" value="되돌아가기"></a>
 		</div>
@@ -71,6 +74,7 @@
 			alert("학과를 입력하세요");
 			return;
 		}
+		alert("추가 완료.");
 		form.submit();
 		
 	}

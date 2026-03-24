@@ -20,8 +20,8 @@
 				+ "STU_NO = '" + stuNo + "',"
 				+ "STU_NAME = '" + name + "',"
 				+ "STU_DEPT = '" + dept + "',"
-				+ "STU_GRADE = '" + grade + "',"
-				+ "WHERE STU_NO = " + stuNo;
+				+ "STU_GRADE = " + grade + ""
+				+ "WHERE STU_NO = '" + stuNo + "'"; 
 	int result = stmt.executeUpdate(sql);
 		
 	%>

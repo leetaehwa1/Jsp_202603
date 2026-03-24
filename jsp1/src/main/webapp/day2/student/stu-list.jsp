@@ -18,18 +18,37 @@
 </style>
 </head>
 <body>
+	<%@ include file="../../DB.jsp" %>
+	<form action="stu-list.jsp" name="form">
+	<div>
+	
+	</div>
+	<% 
+	String dept = request.getParameter("dept");
+	dept = dept != null ? dept : "";
+	%>
+	<div>
+		<select name="dept" onchange="fnDept(this.value)">
+			<option value="">:: 전체 ::</option>
+			<option value="기계" <%= dept.equals("기계") ? "selected" : "" %>>:: 기계 ::</option>
+			<option value="전기전자" <%= dept.equals("전기전자") ? "selected" : "" %>>:: 전기전자 ::</option>
+			<option value="컴퓨터정보" <%= dept.equals("컴퓨터정보") ? "selected" : "" %>>:: 컴퓨터정보 ::</option>
+		</select>
+	</div>
+
 	<%
 		String keyword = request.getParameter("keyword");
 		/* if(keyword == null){
 			keyword = "";
 		} */
+		
 	%>
-	<form action="stu-list.jsp">
-	<%@ include file="../../DB.jsp" %>
+	
 		
 	<div class="search-area">
 		<label>검색 : <input name="keyword" value="<%= keyword != null ? keyword : "" %>"></label>
 		<input type="submit" value="검색">
+		
 	</div>
 	<table>
 		<tr>
@@ -41,14 +60,19 @@
 	<%
 	
 		String sql = "SELECT * FROM STUDENT WHERE 1=1 ";
-		if(keyword != null){
+		if(keyword != null ){
 			sql += "AND ("
 					+ "STU_NAME LIKE '%" + keyword + "%' OR "
 					+ "STU_NO LIKE '%" + keyword + "%' OR "
 					+ "STU_DEPT LIKE '%" + keyword + "%' OR "
 					+ "STU_GRADE LIKE '%" + keyword + "%'"
-					+ ")";
+					+ ") ";
 		}
+		
+		if(dept != null && !dept.equals("")){
+			sql += "AND STU_DEPT = '" + dept +"' ";
+		}
+		
 		ResultSet rs = stmt.executeQuery(sql);
 		
 		while(rs.next()){
@@ -72,11 +96,13 @@
 </html>
 <script>
 	function fnAdd() {
-		// board-add.jsp
-		
+		// stu-add.jsp
 		location.href = "stu-add.jsp";
 	}
 	function fnView(stuNo) {
 		location.href = "stu-view.jsp?stuNo=" + stuNo;
+	}
+	function fnDept() {
+		document.form.submit();
 	}
 </script>

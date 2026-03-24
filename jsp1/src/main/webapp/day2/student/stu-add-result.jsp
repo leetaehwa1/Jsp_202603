@@ -16,7 +16,7 @@
 		String sql = "INSERT INTO STUDENT (STU_NO, STU_NAME, STU_DEPT, STU_GRADE) VALUES ("
 				+ "'" + stuNo + "', "
 				+ "'" + name + "', "
-				+ "'" + dept +"', "
+				+ "'" + dept + "', "
 				+ "'" + grade + "')";
 		int result = stmt.executeUpdate(sql);
 		if(result > 0){

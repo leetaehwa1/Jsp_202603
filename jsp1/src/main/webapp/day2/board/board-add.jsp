@@ -24,7 +24,7 @@
 </style>
 </head>
 <body>
-	<form action="borad-add-result.jsp" name="form">
+	<form action="board-add-result.jsp" name="form">
 		<table>
 			<tr>
 				<th>종 류</th>
@@ -61,7 +61,7 @@
 			alert("제목 및 내용 입력하세요.");
 			return;
 		}
-		
+		form.submit();
 		
 	}
 </script>

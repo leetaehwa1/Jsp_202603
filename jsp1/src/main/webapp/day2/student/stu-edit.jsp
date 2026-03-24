@@ -51,9 +51,10 @@
 					</label>
 				</td>
 			</tr>
+			<input type="text" name="stuNo" value="<%= rs.getString("STU_NO")%>" hidden>
 			<tr>
 				<th>학 번</th>
-					<td><input type="text" name="stuNo" value="<%= rs.getString("STU_NO")%>"></td>
+					<td><input disabled type="text" name="stuNo" value="<%= rs.getString("STU_NO")%>"></td>
 			</tr>
 			<tr>
 				<th>이 름</th>

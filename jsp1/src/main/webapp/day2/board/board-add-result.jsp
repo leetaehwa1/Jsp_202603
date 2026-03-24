@@ -13,12 +13,13 @@
 	String contents = request.getParameter("contents"); 
 	String kind = request.getParameter("kind"); 
 	
+	String sessionId = (String) session.getAttribute("sessionId");
 	/* 시퀀스 */
 	/* 아이디는 하드코딩 (user01~05) */
 	/* 조회수는 0, 날짜는 SYSDATE */
 	String sql = "INSERT INTO TBL_BOARD VALUES("
 				+ "BOARD_SEQ.NEXTVAL, "
-				+ "'user01',"
+				+ "'" + sessionId + "', "
 				+ "'" + title + "', "
 				+ "'" + contents +"', "
 				+ "0, "
