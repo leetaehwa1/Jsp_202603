@@ -24,6 +24,11 @@
 	div{
 		margin-top: 10px;
 	}
+	input[readOnly]{
+		background-color: #eee;
+		border-color: white;
+	}
+	
 </style>
 </head>
 <body>
@@ -40,15 +45,20 @@
 			</tr>
 			<tr>
 				<th>학 번</th>
-					<td><label><input type="text" name="stuNo"></td></label>
+					<td><label><input type="text" name="stuNo">
+					<input type="button" onclick ="fnCheck()" value="중복체크">
+					</label>
+					</td>
+					
+					
 			</tr>
 			<tr>
 				<th>이 름</th>
-					<td><label><input type="text" name="name"></td></label>
+					<td><label><input type="text" name="name"></label></td>
 			</tr>
 			<tr>
 				<th>학 과</th>
-					<td><label><input type="text" name="dept"></td></label>
+					<td><label><input type="text" name="dept"></label></td>
 			</tr>
 		</table>
 		<div>
@@ -60,8 +70,15 @@
 </body>
 </html>
 <script>
-	function fnAdd() {	
+	 let addFlg = "N";
+	function fnAdd() {
 		let form = document.form;
+		if(addFlg == "N"){
+			alert("중복체크 후 시도해주세요.");
+			return;
+		}
+		
+		/* let form = document.form;
 		if(form.name.value.length == 0){
 			alert("이름을 입력하세요.");
 			return;
@@ -73,9 +90,27 @@
 		if(form.dept.value.length == 0){
 			alert("학과를 입력하세요");
 			return;
-		}
-		alert("추가 완료.");
+		} */
 		form.submit();
 		
+	}
+	function fnCheck() {
+		/* student-check.jsp */
+		
+		let form = document.form;
+		let stuNo = form.stuNo.value;
+		
+		if(stuNo.length != 8){
+			alert("학번은 8글자를 입력해주세요.");
+			return;
+		}
+		window.open("student-check.jsp?stuNo=" + stuNo, "check" ,"width=400,height=400");
+	}
+	function fnReturn(flg) {
+		let form = document.form;
+		if(flg =="Y"){
+			form.stuNo.readOnly = true;
+			addFlg = flg;
+		}
 	}
 </script>

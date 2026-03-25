@@ -19,6 +19,7 @@
 	<form action="signup-result.jsp" name="signup" method="get">
 		<div>
 			<label>아이디 : <input name="userId"></label>
+			<input type="button" value="중복체크" onclick="fnCheck()"> 
 		</div>
 		<div>
 			<label>비밀번호 : <input name="pwd1" type="password"></label>
@@ -41,10 +42,15 @@
 </body>
 </html>
 <script>
+ 	let addFlg = "N";
 	function fnSignUp(){
 		let signup = document.signup;
-		 console.log(signup.userId.value); 
-		 if(signup.userId.value.length == 0){
+		if(addFlg == "N"){
+			alert("중복체크 후 시도해주세요.");
+			return;
+		}
+		
+		/*  if(signup.userId.value.length == 0){
 			 alert("아이디 입력하세요");
 			 signup.userId.focus();
 			 return;
@@ -63,11 +69,28 @@
 			 alert("이름을 입력하세요");
 			 signup.name.focus();
 			 return;
-		 }
+		 } */
 		 
 		 
 		// 위 조건을 모두 만족했을 때, 최종 submit(action 페이지 호출)
 		signup.submit();
+	}
+	function fnCheck(){
+		let signup = document.signup;
+		let userId = signup.userId.value;
 		
+		if(userId.length < 6){
+			alert("아이디는 6글자 이상 입력해주세요.");
+			return;
+			}
+		window.open("signUp-check.jsp?userId=" + userId, "check", "width=400px; height=400px" );
+		}
+		
+		function fnReturn(flg) {
+			let signup = document.signup;
+			if(flg =="Y"){
+				signup.userId.readOnly = true;
+				addFlg = flg;
+			}
 	}
 </script>
